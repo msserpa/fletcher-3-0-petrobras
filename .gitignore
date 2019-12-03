@@ -53,6 +53,7 @@ dkms.conf
 
 # msserpa
 exp/bin/*
+*.x
 
 # keep for empty dirs
 !.keep
