@@ -54,6 +54,8 @@ dkms.conf
 # msserpa
 exp/bin/*
 *.x
+*rsf*
+*Report.csv
 
 # keep for empty dirs
 !.keep

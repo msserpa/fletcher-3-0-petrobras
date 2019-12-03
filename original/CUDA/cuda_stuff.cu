@@ -41,7 +41,7 @@ void CUDA_Initialize(const int sx, const int sy, const int sz, const int bord,
  
   int deviceCount;
   CUDA_CALL(cudaGetDeviceCount(&deviceCount));
-  const int device=1;
+  const int device=0;
   cudaDeviceProp deviceProp;
   CUDA_CALL(cudaGetDeviceProperties(&deviceProp, device));
   printf("CUDA source using device(%d) %s with compute capability %d.%d.\n", device, deviceProp.name, deviceProp.major, deviceProp.minor);
