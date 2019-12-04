@@ -26,7 +26,7 @@ log=$root/output/$host.log
 cd /tmp
 
 while true; do
-	step=`ls output/ | grep $host | tail -1 | awk -F. {'print $2'}`
+	step=`ls $root/output/ | grep $host | tail -1 | awk -F. {'print $2'}`
 	if [ -z "$step" ]; then
 		step=0
 	fi
@@ -70,7 +70,7 @@ while true; do
 		cat /tmp/fletcher.out >> $log
 		cat /tmp/fletcher.err >> $log
 
-		echo $host,$arch,$app,$version,"samples",$SAMPLES,"M" >> $output
+		echo $host,$arch,$app,$version,$size,"samples",$SAMPLES,"M" >> $output
 		sed -i '1d' $doe
 	done < $doe
 
