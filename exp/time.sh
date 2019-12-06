@@ -70,7 +70,7 @@ while true; do
 		fi
 
 		SAMPLES=`cat /tmp/fletcher.out | grep Samples | awk {'print $2'}`
-		TIME=`cat /tmp/s|grep Execution | awk {'print $5'}`
+		TIME=`cat /tmp/fletcher.out | grep Execution | awk {'print $5'}`
 
 		cat /tmp/fletcher.out >> $log
 		cat /tmp/fletcher.err >> $log
