@@ -31,6 +31,6 @@ export PGCC_GPU_SM=cc60 # change GPU capability
 # cuda
 export HOST_COMPILER=icc
 export PATH=$PATH:/usr/local/cuda/bin
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64
 
 export CUDA_GPU_SM=sm_60 # change GPU capability
