@@ -83,10 +83,11 @@ while true; do
 		echo $host,$arch,$app,$version,$size,"power",$POWER,"W" >> $output
 
 		sed -i '1d' $doe
+                find $DOE -size 0 -delete
 	done < $doe
 
 	date +"%d/%m/%Y %H:%M:%S"
 	printf "\t done - $output \n\n"
 
-	rm $doe
+	rm -f $doe
 done
