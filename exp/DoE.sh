@@ -12,7 +12,7 @@ rm -f $OUTPUT
 size=0
 for application in "${APP[@]}"; do
 	for version in "${VERSAO[@]}"; do
-		for size in `seq 24 32 512`; do
+		for size in `seq 24 32 536`; do
 			echo "$application;$version;$size" >> $OUTPUT
 			size=$((size+1))
 		done
