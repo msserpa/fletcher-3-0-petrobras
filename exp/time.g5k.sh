@@ -12,9 +12,9 @@ printf "\t Running on $arch@$host \n\n"
 date +"%d/%m/%Y %H:%M:%S"
 
 #source env.sh
-./compile.sh &> /tmp/time.make
-sed 's/^/\t/' /tmp/time.make
-printf "\n"
+#./compile.sh &> /tmp/time.make
+#sed 's/^/\t/' /tmp/time.make
+#printf "\n"
 
 rm -rf $SCRATCH/bin/
 cp -r $root/bin/ $SCRATCH/
