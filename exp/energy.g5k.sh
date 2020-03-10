@@ -35,9 +35,13 @@ while true; do
 	doe=$root/DoE/$host.csv
 	if [ -f "$doe" ]; then
 	    printf "\t Using old $doe\n"
-	else 
-	    $root/DoE.sh
-	    step=$((step+1))
+	else
+		if [ "$1" == "cpu-only" ]; then
+			$root/DoE.sh $1
+		else
+			$root/DoE.sh
+		fi
+		step=$((step+1))
 	fi
 	log=$root/log/$host.$step.log
 	output=$root/output/$host.$step.csv
