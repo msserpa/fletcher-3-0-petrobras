@@ -73,7 +73,6 @@ while true; do
 			export ACC_NUM_CORES=`lscpu | grep "^CPU(s):" | awk {'print $2'}`
 		else
 			appPower $exec TTI $size $size $size 16 12.5 12.5 12.5 0.001 0.1 > /tmp/fletcher.out 2> /tmp/fletcher.err
-			echo "appPower $exec TTI $size $size $size 16 12.5 12.5 12.5 0.001 0.1 > /tmp/fletcher.out 2> /tmp/fletcher.err"
 		fi
 
 		POWER=`head -n1 /tmp/fletcher.err`
