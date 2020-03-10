@@ -54,9 +54,19 @@ int main(int argc, char **argv){
 			    break;
 			}
 		}
-		max--;
+
+                sprintf(str, "wc -l /tmp/power.%d | awk {'print $1'} > /tmp/power.lines", getpid());
+		system(str);
+		FILE *f = fopen("/tmp/power.lines", "r");
+                if(f == NULL){
+                        perror("file open error");
+                        exit(EXIT_FAILURE);
+                }
+		fscanf(f, "%ld", &max);
+		fclose(f);
+
 		sprintf(str, "/tmp/power.%d", getpid());
-		FILE *f = fopen(str, "r");
+		f = fopen(str, "r");
 		if(f == NULL){
 			perror("file open error");
 			exit(EXIT_FAILURE);
@@ -67,15 +77,17 @@ int main(int argc, char **argv){
 
 		printf("max=%ld %ld %f\n", max, INTERVAL, (float)max * dt);
 		fscanf(f, "%ld\n", &first);
-		for(i = 1; i < max - 1; i++){
+		for(i = 1; i < max - 3; i++){
 			fscanf(f, "%ld\n", &value);
-			energy += value;
-			power += value;
+			energy += (double) value;
+			power += (double) value;
 		}
 		fscanf(f, "%ld\n", &last);
 		power = (power + first + last) / (float)max;
 		energy = (b / (2 * (max-1))) * (first + 2 * energy + last);
 		fprintf(stderr, "%.2lf\n", power);
+                fprintf(stderr, "%.2lf\n", energy);
+		
 		printf("power: %lf Watts\n", power);
 		printf("energy (average):   %lf Joules\n", power * (float)max * dt);
 		printf("energy (integrate): %lf Joules\n", energy);
