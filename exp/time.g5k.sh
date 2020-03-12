@@ -12,9 +12,9 @@ printf "\t Running on $arch@$host \n\n"
 date +"%d/%m/%Y %H:%M:%S"
 
 #source env.sh
-./compile.sh &> /tmp/time.make
-sed 's/^/\t/' /tmp/time.make
-printf "\n"
+#./compile.sh &> /tmp/time.make
+#sed 's/^/\t/' /tmp/time.make
+#printf "\n"
 
 rm -rf $SCRATCH/bin/
 cp -r $root/bin/ $SCRATCH/
@@ -30,9 +30,13 @@ while true; do
 	doe=$root/DoE/$host.csv
 	if [ -f "$doe" ]; then
 	    printf "\t Using old $doe\n"
-	else 
-	    $root/DoE.sh
-	    step=$((step+1))
+	else
+		if [ "$1" == "cpu-only" ]; then
+			$root/DoE.sh $1
+		 else
+			$root/DoE.sh
+		fi
+		step=$((step+1))
 	fi
 	log=$root/log/$host.$step.log
 	output=$root/output/$host.$step.csv

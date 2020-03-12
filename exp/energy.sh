@@ -76,13 +76,13 @@ while true; do
 		fi
 
 		POWER=`head -n1 /tmp/fletcher.err`
-                ENERGY=`tail -n1 /tmp/fletcher.err`		
+		ENERGY=`tail -n1 /tmp/fletcher.err`
 
 		cat /tmp/fletcher.out >> $log
 		cat /tmp/fletcher.err >> $log
 
 		echo $host,$arch,$app,$version,$size,"power",$POWER,"W" >> $output
-                echo $host,$arch,$app,$version,$size,"energy",$ENERGY,"J" >> $output			
+		echo $host,$arch,$app,$version,$size,"energy",$ENERGY,"J" >> $output
 
 		sed -i '1d' $doe
                 find $DOE -size 0 -delete

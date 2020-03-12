@@ -17,9 +17,9 @@ printf "\t Running on $arch@$host \n\n"
 date +"%d/%m/%Y %H:%M:%S"
 
 #source env.sh
-./compile.sh &> /tmp/time.make
-sed 's/^/\t/' /tmp/time.make
-printf "\n"
+#./compile.sh &> /tmp/time.make
+#sed 's/^/\t/' /tmp/time.make
+#printf "\n"
 
 rm -rf $SCRATCH/bin/
 cp -r $root/bin/ $SCRATCH/
@@ -35,9 +35,13 @@ while true; do
 	doe=$root/DoE/$host.csv
 	if [ -f "$doe" ]; then
 	    printf "\t Using old $doe\n"
-	else 
-	    $root/DoE.sh
-	    step=$((step+1))
+	else
+		if [ "$1" == "cpu-only" ]; then
+			$root/DoE.sh $1
+		else
+			$root/DoE.sh
+		fi
+		step=$((step+1))
 	fi
 	log=$root/log/$host.$step.log
 	output=$root/output/$host.$step.csv
@@ -75,12 +79,14 @@ while true; do
 			appPower $exec TTI $size $size $size 16 12.5 12.5 12.5 0.001 0.1 > /tmp/fletcher.out 2> /tmp/fletcher.err
 		fi
 
-		POWER=`cat /tmp/fletcher.err`
+		POWER=`head -n1 /tmp/fletcher.err`
+		ENERGY=`tail -n1 /tmp/fletcher.err`
 
 		cat /tmp/fletcher.out >> $log
 		cat /tmp/fletcher.err >> $log
 
 		echo $host,$arch,$app,$version,$size,"power",$POWER,"W" >> $output
+		echo $host,$arch,$app,$version,$size,"energy",$ENERGY,"J" >> $output
 
 		sed -i '1d' $doe
                 find $DOE -size 0 -delete
