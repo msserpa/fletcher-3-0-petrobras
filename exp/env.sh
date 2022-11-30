@@ -7,7 +7,7 @@
 # export OMP_FLAG=-fopenmp
 
 # icc 
-source /home/intel/bin/iccvars.sh intel64
+source /home/intel/oneapi/compiler/latest/env/vars.sh
 
 export GCC=icc
 export OMP_FLAG=-qopenmp
@@ -26,7 +26,8 @@ export PATH=$PGI_DIR/bin:$PATH
 export ACC_DEVICE_TYPE=host
 export ACC_NUM_CORES=`lscpu | grep "^CPU(s):" | awk {'print $2'}`
 
-export PGCC_GPU_SM=cc60 # change GPU capability
+#export ACC_DEVICE_TYPE=nvidia
+#export PGCC_GPU_SM=cc60 # change GPU capability
 
 # cuda
 export HOST_COMPILER=icc
