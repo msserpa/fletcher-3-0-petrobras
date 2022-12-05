@@ -15,13 +15,10 @@ export OMP_FLAG=-qopenmp
 export OMP_NUM_THREADS=`lscpu | grep "^CPU(s):" | awk {'print $2'}`
 
 # pgcc
-export PGI=/home/pgi
-export PGI_DIR=$PGI/linux86-64-llvm/2019
-export PGI_CURR_CUDA_HOME=$PGI_DIR/cuda/
-export LD_LIBRARY_PATH=$PGI_DIR/lib:$LD_LIBRARY_PATH
-export MANPATH=$PGI_DIR/man:$MANPATH
-export LM_LICENSE_FILE=$PGI/license.dat
-export PATH=$PGI_DIR/bin:$PATH
+export PGI=/home/pgi/hpc_sdk
+export PGI_DIR=$PGI/Linux_x86_64/2022
+export LD_LIBRARY_PATH=$PGI_DIR/compilers/lib:$LD_LIBRARY_PATH
+export PATH=$PGI_DIR/compilers/bin:$PATH
 
 # run OpenACC in multicore
 export ACC_DEVICE_TYPE=host
@@ -31,7 +28,7 @@ export ACC_NUM_CORES=`lscpu | grep "^CPU(s):" | awk {'print $2'}`
 # https://en.wikipedia.org/wiki/CUDA
 
 # run OpenACC in GPUs
-#export ACC_DEVICE_TYPE=nvidia
+export ACC_DEVICE_TYPE=nvidia
 
 #export PGCC_GPU_SM=cc35 # NVIDIA K20m
 #export PGCC_GPU_SM=cc37 # NVIDIA K80

@@ -3,6 +3,8 @@
 #include "openacc_insertsource.h"
 #include "../sample.h"
 
+extern float *ch1dxx, *ch1dyy, *ch1dzz, *ch1dxy, *ch1dyz, *ch1dxz, *v2px, *v2pz, *v2sz, *v2pn;
+
 float * restrict pDx = NULL;
 float * restrict pDy = NULL;
 float * restrict qDx = NULL;
@@ -15,25 +17,15 @@ void DRIVER_Initialize(const int sx, const int sy, const int sz, const int bord,
 		       float * restrict pp, float * restrict pc, float * restrict qp, float * restrict qc)
 {
 
-  extern float* ch1dxx;
 #pragma acc enter data copyin(ch1dxx[0:sx*sy*sz])
-  extern float* ch1dyy;
 #pragma acc enter data copyin(ch1dyy[0:sx*sy*sz])
-  extern float* ch1dzz;
 #pragma acc enter data copyin(ch1dzz[0:sx*sy*sz])
-  extern float* ch1dxy;
 #pragma acc enter data copyin(ch1dxy[0:sx*sy*sz])
-  extern float* ch1dyz;
 #pragma acc enter data copyin(ch1dyz[0:sx*sy*sz])
-  extern float* ch1dxz;
 #pragma acc enter data copyin(ch1dxz[0:sx*sy*sz])
-  extern float* v2px;
 #pragma acc enter data copyin(  v2px[0:sx*sy*sz])
-  extern float* v2pz;
 #pragma acc enter data copyin(  v2pz[0:sx*sy*sz])
-  extern float* v2sz;
 #pragma acc enter data copyin(  v2sz[0:sx*sy*sz])
-  extern float* v2pn;
 #pragma acc enter data copyin(  v2pn[0:sx*sy*sz])
 
 #pragma acc enter data copyin(pp[0:sx*sy*sz])
