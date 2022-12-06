@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -o errexit -o nounset -o pipefail -o posix
+#set -o errexit -o nounset -o pipefail -o posix
 
 declare -a APP=("original" "der1der1" "der1der1hm" "der1der1lm")
 

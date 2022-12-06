@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --exclude=tupi1
+#SBATCH --exclude=tupi2
 #SBATCH --exclusive
 
 root=`pwd`

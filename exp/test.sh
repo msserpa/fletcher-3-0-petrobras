@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -o errexit -o nounset -o pipefail -o posix
+#set -o errexit -o nounset -o pipefail -o posix
 
 cd bin/
 
