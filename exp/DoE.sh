@@ -2,12 +2,12 @@
 
 #set -o errexit -o nounset -o pipefail -o posix
 
-declare -a APP=("original" "der1der1" "der1der1hm" "der1der1lm")
+declare -a APP=("original" "der1der1")
 
 if [ "$1" == "cpu-only" ]; then
 	declare -a VERSAO=("OpenMP" "OpenACC-CPU")
 else
-	declare -a VERSAO=("OpenACC-GPU" "OpenMP" "CUDA" "OpenACC-CPU")
+	declare -a VERSAO=("OpenMP" "CUDA")
 fi
 
 OUTPUT=$root/DoE/`hostname | awk -F. {'print $1'}`.csv

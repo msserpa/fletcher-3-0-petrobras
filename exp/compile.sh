@@ -5,9 +5,9 @@
 mkdir -p bin/
 cd ../
 
-for version in der1der1hm der1der1lm der1der1 original; do
+for version in der1der1 original; do
 	cd $version
-	for backend in OpenMP CUDA OpenACC; do
+	for backend in OpenMP CUDA; do
 		echo "-----------------------------------------------------"
 		echo "   $version - $backend"
 		echo "-----------------------------------------------------"
